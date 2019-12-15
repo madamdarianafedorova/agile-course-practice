@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import ru.unn.agile.arabicromanconverter.viewmodel.ViewModel;
+import ru.unn.agile.arabicromanconverter.infrastructure.TxtLogger;
 
 public class ArabicRomanConverter {
     @FXML
@@ -24,6 +25,7 @@ public class ArabicRomanConverter {
 
     @FXML
     void initialize() {
+        viewModel.setLogger(new TxtLogger("./TxtLogger-lab3.log"));
         inputField.textProperty().bindBidirectional(viewModel.getInput());
         outputField.textProperty().bindBidirectional(viewModel.getOutput());
         lblConvert.textProperty().bindBidirectional(viewModel.getConvert());
