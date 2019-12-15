@@ -139,7 +139,7 @@ public class ArabicRomanConverterViewModelTests {
 
     @Test
     public void logContainsProperMessageAfterIncorrectInput() {
-        viewModel.getInput().set("bag");;
+        viewModel.getInput().set("bag");
         String message = viewModel.getLog().get(0);
 
         assertTrue(message.matches(".*" + LogMessages.INCORRECT_INPUT + ".*"));
