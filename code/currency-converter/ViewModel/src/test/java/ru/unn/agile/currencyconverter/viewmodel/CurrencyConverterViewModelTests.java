@@ -58,35 +58,35 @@ public class CurrencyConverterViewModelTests {
     }
 
     @Test
-    public void canShowErrorAfterInvalidInput() {
-        viewModel.getInputCurrency().set("one");
+    public void errorAfterIncorrectInput() {
+        viewModel.getInputCurrency().set("word");
 
         assertEquals("Incorrect Currency", viewModel.getError().get());
     }
 
     @Test
-    public void canClearErrorAfterValidInput() {
-        viewModel.getInputCurrency().set("one");
+    public void noErrorAfterCorrectInput() {
+        viewModel.getInputCurrency().set("word");
         viewModel.getInputCurrency().set("3");
 
         assertEquals("", viewModel.getError().get());
     }
 
     @Test
-    public void canSetConvertButtonDisabledInvalidInput() {
-        viewModel.getInputCurrency().set("one");
+    public void cannotConvertWithIncorrectInput() {
+        viewModel.getInputCurrency().set("word");
 
         assertTrue(viewModel.isConvertButtonDisabled().get());
     }
 
     @Test
-    public void canClearErrorByDefault() {
+    public void noErrorByDefault() {
         assertEquals("", viewModel.getError().get());
     }
 
     @Test
-    public void canClearErrorAfterClearInput() {
-        viewModel.getInputCurrency().set("one");
+    public void noErrorAfterClearInput() {
+        viewModel.getInputCurrency().set("word");
         viewModel.getInputCurrency().set("");
 
         assertEquals("", viewModel.getError().get());

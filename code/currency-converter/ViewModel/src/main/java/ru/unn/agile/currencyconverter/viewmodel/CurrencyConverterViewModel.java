@@ -63,14 +63,10 @@ public class CurrencyConverterViewModel {
     }
 
     private void onInput(final String newValue) {
-        boolean isNumeric = isNumeric(newValue);
-        error.set(isNumeric || newValue.isEmpty() ? "" : "Incorrect Currency");
-        btnDisabled.set(newValue.isEmpty() || !isNumeric);
+        boolean isDouble = newValue.matches("\\d+(\\.\\d+)?");
+        error.set(isDouble || newValue.isEmpty() ? "" : "Incorrect Currency");
+        btnDisabled.set(newValue.isEmpty() || !isDouble);
         outputCurrency.set("");
-    }
-
-    private boolean isNumeric(final String str) {
-        return str.matches("\\d+(\\.\\d+)?");
     }
 
     private static String format(final double d) {
