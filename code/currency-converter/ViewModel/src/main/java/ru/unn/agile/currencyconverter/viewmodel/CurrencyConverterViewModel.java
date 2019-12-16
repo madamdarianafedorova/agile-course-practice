@@ -59,7 +59,7 @@ public class CurrencyConverterViewModel {
     public void convert() {
         double value = Double.parseDouble(inputCurrency.get());
         value = CurrencyConverter.convert(getCurrencyPair().get(), value);
-        outputCurrency.set(format(value));
+        outputCurrency.set(String.format("%s", value));
     }
 
     private void onInput(final String newValue) {
@@ -67,14 +67,6 @@ public class CurrencyConverterViewModel {
         error.set(isDouble || newValue.isEmpty() ? "" : "Incorrect Currency");
         btnDisabled.set(newValue.isEmpty() || !isDouble);
         outputCurrency.set("");
-    }
-
-    private static String format(final double d) {
-        if (d == (long) d) {
-            return String.format("%d", (long) d);
-        } else {
-            return String.format("%s", d);
-        }
     }
 
     private void onTypeChange() {

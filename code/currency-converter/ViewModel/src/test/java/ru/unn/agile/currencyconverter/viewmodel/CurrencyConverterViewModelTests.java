@@ -133,7 +133,7 @@ public class CurrencyConverterViewModelTests {
 
         viewModel.convert();
 
-        assertEquals("160", viewModel.getOutputCurrency().get());
+        assertEquals("160.0", viewModel.getOutputCurrency().get());
     }
 
     @Test
@@ -163,7 +163,7 @@ public class CurrencyConverterViewModelTests {
         viewModel.getCurrencyPair().set(CurrencyPair.RUBLE_TO_EURO);
         viewModel.convert();
 
-        assertEquals("140", viewModel.getOutputCurrency().get());
+        assertEquals("140.0", viewModel.getOutputCurrency().get());
     }
 
     @Test
@@ -173,7 +173,7 @@ public class CurrencyConverterViewModelTests {
         viewModel.getCurrencyPair().set(CurrencyPair.DOLLAR_TO_EURO);
         viewModel.convert();
 
-        assertEquals("8900", viewModel.getOutputCurrency().get());
+        assertEquals("8900.0", viewModel.getOutputCurrency().get());
     }
 
     @Test
