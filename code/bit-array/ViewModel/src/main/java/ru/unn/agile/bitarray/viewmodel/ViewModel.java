@@ -99,6 +99,7 @@ public class ViewModel {
                 bitArray.setBit(index);
             }
         }
+        fieldBitArrayProperty();
     }
 
     public void setBit() {

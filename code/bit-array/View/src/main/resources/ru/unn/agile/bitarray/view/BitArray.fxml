@@ -13,7 +13,7 @@
       <children>
         <GridPane GridPane.columnIndex="0" GridPane.rowIndex="0">
           <children>
-            <TextField fx:id="bitArrayInput" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="inputBitArray" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
               <children>
                 <Label prefHeight="-1.0" prefWidth="-1.0" text="Input status:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
@@ -54,7 +54,7 @@
         </GridPane>
         <GridPane GridPane.columnIndex="0" GridPane.rowIndex="2">
           <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" minHeight="9.0" prefHeight="30.0" prefWidth="379.0" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label fx:id="labelBitArray" alignment="CENTER" contentDisplay="CENTER" minHeight="9.0" prefHeight="30.0" prefWidth="379.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <Label prefHeight="37.0" prefWidth="101.0" text="Current BitArray:" GridPane.columnIndex="1" GridPane.rowIndex="1" />
           </children>
           <columnConstraints>

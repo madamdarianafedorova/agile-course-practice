@@ -11,12 +11,14 @@ public class BitArray {
     private ViewModel viewModel;
 
     @FXML
-    private TextField bitArrayInput;
+    private TextField inputBitArray;
     @FXML
     private TextField inputBit;
 
     @FXML
     private Label labelStatus;
+    @FXML
+    private Label labelBitArray;
 
     @FXML
     private Button btnCreateBitArray;
@@ -28,8 +30,9 @@ public class BitArray {
     @FXML
     void initialize() {
         labelStatus.textProperty().bind(viewModel.fieldInputStatusProperty());
+        labelBitArray.textProperty().bind(viewModel.fieldBitArrayProperty());
 
-        bitArrayInput.textProperty().bindBidirectional(viewModel.inputBitArrayProperty());
+        inputBitArray.textProperty().bindBidirectional(viewModel.inputBitArrayProperty());
         inputBit.textProperty().bindBidirectional(viewModel.inputBitProperty());
 
         btnCreateBitArray.setOnAction(event -> viewModel.create());
