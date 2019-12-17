@@ -80,14 +80,28 @@ public class ViewModelTests {
 
     @Test
     public void statusBitFieldOnCorrectInputIsReady() {
-        viewModel.inputBitProperty().set("42");
+        viewModel.inputBitProperty().set("3");
 
         assertEquals(Status.READY.toString(), viewModel.fieldInputBitStatusProperty().get());
     }
+
+    @Test
+    public void statusBitFieldOnCorrectInputUnsetIsSUCCESS() {
+        viewModel.inputBitArrayProperty().set("0101");
+        viewModel.create();
+
+        viewModel.inputBitProperty().set("1");
+        viewModel.unsetBit();
+
+        assertEquals(Status.SUCCESS.toString(), viewModel.fieldInputArrayStatusProperty().get());
+    }
+
+
     // BitArray field tests
     @Test
     public void bitArrayFieldAfterCreatingSameAsInput() {
         String input = "0101";
+
         viewModel.inputBitArrayProperty().set(input);
         viewModel.create();
 
@@ -96,12 +110,36 @@ public class ViewModelTests {
 
     @Test
     public void bitArrayFieldAfterCreateOnIncorrectInputIsEmpty() {
-        String incorrect_input = "42";
+        final String incorrect_input = "42";
         viewModel.inputBitArrayProperty().set(incorrect_input);
         viewModel.create();
 
         assertEquals("", viewModel.fieldBitArrayProperty().get().toString());
     }
 
+    @Test
+    public void bitArrayFieldOnCreatedBitArrayAfterSetBitIsChanged() {
+        final String input = "0101";
+        final String inputIndex = "0";
+        viewModel.inputBitArrayProperty().set(input);
+        viewModel.create();
 
+        viewModel.inputBitProperty().set(inputIndex);
+        viewModel.setBit();
+
+        assertNotEquals(input, viewModel.fieldBitArrayProperty().get().toString());
+    }
+
+    @Test
+    public void bitArrayFieldOnCreatedBitArrayAfterUnsetBitIsChanged() {
+        final String input = "0101";
+        final String inputIndex = "1";
+        viewModel.inputBitArrayProperty().set(input);
+        viewModel.create();
+
+        viewModel.inputBitProperty().set(inputIndex);
+        viewModel.setBit();
+
+        assertNotEquals(input, viewModel.fieldBitArrayProperty().get().toString());
+    }
 }
