@@ -1,5 +1,6 @@
 package ru.unn.agile.bitarray.viewmodel;
 
+import javafx.fxml.FXML;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -37,5 +38,11 @@ public class ViewModelTests {
     public void inputFieldIsEmptyStatusIsWaiting() {
         viewModel.inputBitArrayProperty().set("");
         assertEquals(Status.WAITING.toString(), viewModel.fieldInputStatusProperty().get());
+    }
+
+    @Test
+    public void inputFieldIncorrectFormatArray() {
+        viewModel.inputBitArrayProperty().set("42");
+        assertEquals(Status.BAD_FORMAT_ARRAY.toString(), viewModel.fieldInputStatusProperty().get());
     }
 }

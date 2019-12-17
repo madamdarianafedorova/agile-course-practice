@@ -7,6 +7,8 @@ import ru.unn.agile.bitarray.model.BitArray;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ViewModel {
     private final List<ValueChangeListener> valueChangedListeners = new ArrayList<>();
@@ -17,6 +19,8 @@ public class ViewModel {
     private final StringProperty fieldInputStatus = new SimpleStringProperty();
     private final StringProperty fieldBitArray = new SimpleStringProperty();
 
+    private String patternInput = "[0,1]+";
+
     private BitArray bitArray;
 
     public ViewModel() {
@@ -26,16 +30,16 @@ public class ViewModel {
 
         fieldInputStatus.set(Status.WAITING.toString());
 
-        final List<StringProperty> fields = new ArrayList<>() {
+        final List<StringProperty> triggers = new ArrayList<>() {
             {
                 add(inputBitArray);
                 add(inputBit);
             }
         };
 
-        for (StringProperty field : fields) {
+        for (StringProperty trigger : triggers) {
             final ValueChangeListener listener = new ValueChangeListener();
-            field.addListener(listener);
+            trigger.addListener(listener);
             valueChangedListeners.add(listener);
         }
     }
@@ -56,8 +60,21 @@ public class ViewModel {
         return fieldInputStatus;
     }
 
+    private boolean patternMatch(final String inputString, final String patternString) {
+        Pattern pattern = Pattern.compile(patternString);
+        Matcher matcher = pattern.matcher(inputString);
+        return matcher.matches();
+    }
+
     private String getFieldInputStatus() {
-        return fieldInputStatus.get();
+        Status inputStatus = Status.READY;
+        String arrayInputStr = inputBitArray.get();
+        boolean matchArrayInput = patternMatch(arrayInputStr, patternInput);
+        if (!matchArrayInput) {
+            inputStatus = Status.BAD_FORMAT_ARRAY;
+            return inputStatus.toString();
+        }
+        return inputStatus.toString();
     }
 
     public void create() {
@@ -83,8 +100,9 @@ public class ViewModel {
 
 enum Status {
     WAITING("Please provide input data"),
-    READY("Press 'Calculate' or Enter"),
-    BAD_FORMAT("Bad format"),
+    READY("Press 'Create BitArray' or Enter"),
+    BAD_FORMAT_ARRAY("Incorrect format. Required: 01001 (size is not limited)"),
+    BAD_FORMAT_BIT("Incorrect format. Index required."),
     SUCCESS("Success");
 
     private final String name;
