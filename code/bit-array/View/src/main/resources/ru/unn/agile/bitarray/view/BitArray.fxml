@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="181.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<?import ru.unn.agile.bitarray.viewmodel.ViewModel?>
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="181.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.unn.agile.bitarray.view.BitArray">
+  <fx:define>
+    <ViewModel fx:id="viewModel" />
+  </fx:define>
   <children>
     <GridPane prefHeight="272.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
         <GridPane GridPane.columnIndex="0" GridPane.rowIndex="0">
           <children>
-            <TextField prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="bitArrayInput" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
               <children>
-                <Label prefHeight="-1.0" prefWidth="-1.0" text="Status" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                <Label prefHeight="30.0" prefWidth="196.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <Label prefHeight="-1.0" prefWidth="-1.0" text="Input status:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <Label fx:id="labelStatus" prefHeight="30.0" prefWidth="196.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
               </children>
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -40,7 +41,7 @@
         </GridPane>
         <GridPane minHeight="-Infinity" GridPane.columnIndex="1" GridPane.rowIndex="0">
           <children>
-            <Button contentDisplay="CENTER" mnemonicParsing="false" prefWidth="132.0" text="Create BitArray" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <Button fx:id="btnCreateBitArray" contentDisplay="CENTER" mnemonicParsing="false" prefWidth="132.0" text="Create BitArray" GridPane.columnIndex="1" GridPane.rowIndex="0" />
           </children>
           <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="147.0" minWidth="10.0" prefWidth="10.0" />
@@ -72,8 +73,8 @@
           <children>
             <GridPane minHeight="-Infinity" GridPane.columnIndex="0" GridPane.rowIndex="0">
               <children>
-                <Button contentDisplay="CENTER" mnemonicParsing="false" prefWidth="132.0" text="Set Bit" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-                <Button contentDisplay="CENTER" mnemonicParsing="false" prefWidth="132.0" text="Unset Bit" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Button fx:id="btnSetBit" contentDisplay="CENTER" mnemonicParsing="false" prefWidth="132.0" text="Set Bit" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <Button fx:id="btnUnsetBit" contentDisplay="CENTER" mnemonicParsing="false" prefWidth="132.0" text="Unset Bit" GridPane.columnIndex="1" GridPane.rowIndex="1" />
               </children>
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="147.0" minWidth="10.0" prefWidth="10.0" />
@@ -96,7 +97,7 @@
         <GridPane GridPane.columnIndex="0" GridPane.rowIndex="1">
           <children>
             <Label prefHeight="37.0" prefWidth="101.0" text="Bit" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField fx:id="inputBit" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
           </children>
           <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="340.0" minWidth="10.0" prefWidth="340.0" />

@@ -30,6 +30,10 @@ public class ViewModelTests {
 
     @Test
     public void constructorDefaultSetStatusWaiting() {
-        assertEquals(Status.WAITING.toString(), viewModel.statusFieldProperty().get());
+        assertEquals(Status.WAITING.toString(), viewModel.inputStatusFieldProperty().get());
     }
+
+    // Input field tests
+//    @Test
+//    public void input
 }
