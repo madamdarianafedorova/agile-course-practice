@@ -87,7 +87,7 @@ public class ViewModel {
 
     private Status getFieldInputArrayStatus() {
         Status inputStatus = Status.READY;
-        String arrayInputStr = inputBitArray.get();
+        final String arrayInputStr = inputBitArray.get();
         boolean matchArrayInput = patternMatch(arrayInputStr, patternArrayInput);
         if (!matchArrayInput) {
             inputStatus = Status.BAD_FORMAT_ARRAY;
@@ -98,7 +98,7 @@ public class ViewModel {
 
     private Status getFieldInputBitStatus() {
         Status inputStatus = Status.READY;
-        String bitInputStr = inputBit.get();
+        final String bitInputStr = inputBit.get();
         boolean matchArrayInput = patternMatch(bitInputStr, patternBitInput);
         if (!matchArrayInput) {
             inputStatus = Status.BAD_FORMAT_BIT;
@@ -108,10 +108,10 @@ public class ViewModel {
     }
 
     public void create() {
-        String arrayInputStr = inputBitArray.get();
         if (getFieldInputArrayStatus() != Status.READY) {
             return;
         }
+        final String arrayInputStr = inputBitArray.get();
         bitArray = new BitArray(arrayInputStr.length());
         for (int index = 0; index < arrayInputStr.length(); ++index) {
             if (arrayInputStr.charAt(index) == '1') {
@@ -123,7 +123,20 @@ public class ViewModel {
     }
 
     public void setBit() {
+        if (getFieldInputBitStatus() != Status.READY) {
+            return;
+        }
+        if (bitArray == null) {
+            fieldInputBitStatus.set(Status.NOT_CREATED.toString());
+            return;
+        }
 
+        final String bitInputStr = inputBit.get();
+        final int index = Integer.parseInt(bitInputStr);
+        bitArray.setBit(index);
+
+        fieldBitArrayProperty();
+        fieldInputBitStatus.set(Status.SUCCESS.toString());
     }
 
     public void unsetBit() {
@@ -142,9 +155,10 @@ public class ViewModel {
 
 enum Status {
     WAITING("Please provide input data"),
-    READY("Press 'Create BitArray' or Enter"),
+    READY("Press button or Enter"),
     BAD_FORMAT_ARRAY("Incorrect format. Required: 01001 (size is not limited)"),
     BAD_FORMAT_BIT("Incorrect format. Index required."),
+    NOT_CREATED("Bit array is not created to change it."),
     SUCCESS("Success");
 
     private final String name;

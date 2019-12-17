@@ -64,6 +64,7 @@ public class ViewModelTests {
     }
 
     // Bit status field tests - fieldInputBitStatusProperty
+//    NOT_CREATED
     @Test
     public void statusBitFieldOnInputFieldIsEmptyIsWaiting() {
         viewModel.inputBitProperty().set("");
@@ -86,16 +87,26 @@ public class ViewModelTests {
     }
 
     @Test
-    public void statusBitFieldOnCorrectInputUnsetIsSUCCESS() {
+    public void statusBitFieldOnCorrectInputUnsetBitIsSUCCESS() {
         viewModel.inputBitArrayProperty().set("0101");
         viewModel.create();
 
         viewModel.inputBitProperty().set("1");
         viewModel.unsetBit();
 
-        assertEquals(Status.SUCCESS.toString(), viewModel.fieldInputArrayStatusProperty().get());
+        assertEquals(Status.SUCCESS.toString(), viewModel.fieldInputBitStatusProperty().get());
     }
 
+    @Test
+    public void statusBitFieldOnCorrectInputSetBitIsSUCCESS() {
+        viewModel.inputBitArrayProperty().set("0101");
+        viewModel.create();
+
+        viewModel.inputBitProperty().set("1");
+        viewModel.setBit();
+
+        assertEquals(Status.SUCCESS.toString(), viewModel.fieldInputBitStatusProperty().get());
+    }
 
     // BitArray field tests
     @Test
