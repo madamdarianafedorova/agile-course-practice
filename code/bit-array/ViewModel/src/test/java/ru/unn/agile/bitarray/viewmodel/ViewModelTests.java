@@ -20,4 +20,11 @@ public class ViewModelTests {
         viewModel = null;
     }
 
+    // Constructor tests
+    @Test
+    public void constructorDefaultSetAllStringsEmpty() {
+        assertEquals("", viewModel.bitArrayInputProperty().get());
+        assertEquals("", viewModel.inputBitProperty().get());
+        assertEquals("", viewModel.bitArrayFieldProperty().get());
+    }
 }

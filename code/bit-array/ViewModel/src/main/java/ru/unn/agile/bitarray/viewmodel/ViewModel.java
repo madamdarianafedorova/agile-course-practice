@@ -2,16 +2,27 @@ package ru.unn.agile.bitarray.viewmodel;
 
 import javafx.beans.property.*;
 
-
 public class ViewModel {
     private final StringProperty bitArrayInput = new SimpleStringProperty();
     private final StringProperty inputBit = new SimpleStringProperty();
+
+    private final StringProperty statusField = new SimpleStringProperty();
+    private final StringProperty bitArrayField = new SimpleStringProperty();
+
+    public ViewModel() {
+        inputBit.set("");
+        bitArrayInput.set("");
+        bitArrayField.set("");
+    }
 
     public StringProperty bitArrayInputProperty() {
         return bitArrayInput;
     }
     public StringProperty inputBitProperty() {
         return inputBit;
+    }
+    public StringProperty bitArrayFieldProperty() {
+        return bitArrayField;
     }
 
     public void create() {
