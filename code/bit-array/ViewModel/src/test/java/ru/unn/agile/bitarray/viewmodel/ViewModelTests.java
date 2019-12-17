@@ -35,32 +35,47 @@ public class ViewModelTests {
 
     // Array status field tests - fieldInputArrayStatusProperty
     @Test
-    public void statusFieldOnInputFieldIsEmptyIsWaiting() {
+    public void statusArrayFieldOnInputFieldIsEmptyIsWaiting() {
         viewModel.inputBitArrayProperty().set("");
 
         assertEquals(Status.WAITING.toString(), viewModel.fieldInputArrayStatusProperty().get());
     }
 
     @Test
-    public void statusFieldOnIncorrectBitArrayInputIsBadArrayFormat() {
+    public void statusArrayFieldOnIncorrectBitArrayInputIsBadArrayFormat() {
         viewModel.inputBitArrayProperty().set("42");
 
         assertEquals(Status.BAD_FORMAT_ARRAY.toString(), viewModel.fieldInputArrayStatusProperty().get());
     }
 
     @Test
-    public void statusFieldOnCorrectInputIsReady() {
+    public void statusArrayFieldOnCorrectInputIsReady() {
         viewModel.inputBitArrayProperty().set("01");
 
         assertEquals(Status.READY.toString(), viewModel.fieldInputArrayStatusProperty().get());
     }
 
     @Test
-    public void statusFieldAfterCreatingIsSUCCESS() {
+    public void statusArrayFieldAfterCreatingIsSUCCESS() {
         viewModel.inputBitArrayProperty().set("01");
         viewModel.create();
 
         assertEquals(Status.SUCCESS.toString(), viewModel.fieldInputArrayStatusProperty().get());
+    }
+
+    // Bit status field tests - fieldInputBitStatusProperty
+    @Test
+    public void statusBitFieldOnInputFieldIsEmptyIsWaiting() {
+        viewModel.inputBitProperty().set("");
+
+        assertEquals(Status.WAITING.toString(), viewModel.fieldInputBitStatusProperty().get());
+    }
+
+    @Test
+    public void statusBitFieldOnIncorrectBitInputIsBadBitFormat() {
+        viewModel.inputBitArrayProperty().set("a");
+
+        assertEquals(Status.BAD_FORMAT_BIT.toString(), viewModel.fieldInputBitStatusProperty().get());
     }
 
     // BitArray field tests

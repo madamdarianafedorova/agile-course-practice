@@ -21,7 +21,8 @@ public class ViewModel {
 
     private final StringProperty fieldBitArray = new SimpleStringProperty();
 
-    private String patternInput = "[0,1]+";
+    private String patternArrayInput = "[0,1]+";
+    private String patternBitInput = "[0-9]+";
 
     private BitArray bitArray;
 
@@ -87,9 +88,20 @@ public class ViewModel {
     private Status getFieldInputArrayStatus() {
         Status inputStatus = Status.READY;
         String arrayInputStr = inputBitArray.get();
-        boolean matchArrayInput = patternMatch(arrayInputStr, patternInput);
+        boolean matchArrayInput = patternMatch(arrayInputStr, patternArrayInput);
         if (!matchArrayInput) {
             inputStatus = Status.BAD_FORMAT_ARRAY;
+            return inputStatus;
+        }
+        return inputStatus;
+    }
+
+    private Status getFieldInputBitStatus() {
+        Status inputStatus = Status.READY;
+        String bitInputStr = inputBit.get();
+        boolean matchArrayInput = patternMatch(bitInputStr, patternBitInput);
+        if (!matchArrayInput) {
+            inputStatus = Status.BAD_FORMAT_BIT;
             return inputStatus;
         }
         return inputStatus;
@@ -123,6 +135,7 @@ public class ViewModel {
         public void changed(final ObservableValue<? extends String> observable,
                             final String oldValue, final String newValue) {
             fieldInputArrayStatus.set(getFieldInputArrayStatus().toString());
+            fieldInputBitStatus.set(getFieldInputBitStatus().toString());
         }
     }
 }
