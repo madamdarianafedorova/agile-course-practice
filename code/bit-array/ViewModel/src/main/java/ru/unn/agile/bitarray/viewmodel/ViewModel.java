@@ -13,6 +13,8 @@ public class ViewModel {
         inputBit.set("");
         bitArrayInput.set("");
         bitArrayField.set("");
+
+        statusField.set(Status.WAITING.toString());
     }
 
     public StringProperty bitArrayInputProperty() {
@@ -23,6 +25,9 @@ public class ViewModel {
     }
     public StringProperty bitArrayFieldProperty() {
         return bitArrayField;
+    }
+    public StringProperty statusFieldProperty() {
+        return statusField;
     }
 
     public void create() {

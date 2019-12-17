@@ -27,4 +27,9 @@ public class ViewModelTests {
         assertEquals("", viewModel.inputBitProperty().get());
         assertEquals("", viewModel.bitArrayFieldProperty().get());
     }
+
+    @Test
+    public void constructorDefaultSetStatusWaiting() {
+        assertEquals(Status.WAITING.toString(), viewModel.statusFieldProperty().get());
+    }
 }
