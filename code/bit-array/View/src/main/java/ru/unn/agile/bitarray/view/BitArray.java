@@ -32,7 +32,8 @@ public class BitArray {
     @FXML
     void initialize() {
         labelStatusArray.textProperty().bind(viewModel.fieldInputArrayStatusProperty());
-        labelStatusBit.textProperty().bind(viewModel.fieldInputArrayStatusProperty());
+        labelStatusBit.textProperty().bind(viewModel.fieldInputBitStatusProperty());
+
         labelBitArray.textProperty().bind(viewModel.fieldBitArrayProperty());
 
         inputBitArray.textProperty().bindBidirectional(viewModel.inputBitArrayProperty());
