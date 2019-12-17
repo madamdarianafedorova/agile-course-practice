@@ -53,6 +53,17 @@ public class ViewModel {
     }
 
     public StringProperty fieldBitArrayProperty() {
+        if (bitArray != null) {
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int index = 0; index < bitArray.getCountBit(); ++index) {
+                if (bitArray.isBit(index)) {
+                    stringBuilder.append(1);
+                } else {
+                    stringBuilder.append(0);
+                }
+            }
+            fieldBitArray.set(stringBuilder.toString());
+        }
         return fieldBitArray;
     }
 
@@ -66,19 +77,28 @@ public class ViewModel {
         return matcher.matches();
     }
 
-    private String getFieldInputStatus() {
+    private Status getFieldInputStatus() {
         Status inputStatus = Status.READY;
         String arrayInputStr = inputBitArray.get();
         boolean matchArrayInput = patternMatch(arrayInputStr, patternInput);
         if (!matchArrayInput) {
             inputStatus = Status.BAD_FORMAT_ARRAY;
-            return inputStatus.toString();
+            return inputStatus;
         }
-        return inputStatus.toString();
+        return inputStatus;
     }
 
     public void create() {
-
+        String arrayInputStr = inputBitArray.get();
+        if (getFieldInputStatus() != Status.READY) {
+            return;
+        }
+        bitArray = new BitArray(arrayInputStr.length());
+        for (int index = 0; index < arrayInputStr.length(); ++index) {
+            if (arrayInputStr.charAt(index) == '1') {
+                bitArray.setBit(index);
+            }
+        }
     }
 
     public void setBit() {
@@ -93,7 +113,7 @@ public class ViewModel {
         @Override
         public void changed(final ObservableValue<? extends String> observable,
                             final String oldValue, final String newValue) {
-            fieldInputStatus.set(getFieldInputStatus());
+            fieldInputStatus.set(getFieldInputStatus().toString());
         }
     }
 }
