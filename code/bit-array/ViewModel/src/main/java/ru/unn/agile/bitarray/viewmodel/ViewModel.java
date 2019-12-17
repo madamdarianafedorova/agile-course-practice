@@ -100,6 +100,7 @@ public class ViewModel {
             }
         }
         fieldBitArrayProperty();
+        fieldInputStatus.set(Status.SUCCESS.toString());
     }
 
     public void setBit() {
