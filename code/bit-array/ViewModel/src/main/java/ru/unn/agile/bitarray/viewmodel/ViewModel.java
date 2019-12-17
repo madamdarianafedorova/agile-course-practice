@@ -16,7 +16,9 @@ public class ViewModel {
     private final StringProperty inputBitArray = new SimpleStringProperty();
     private final StringProperty inputBit = new SimpleStringProperty();
 
-    private final StringProperty fieldInputStatus = new SimpleStringProperty();
+    private final StringProperty fieldInputArrayStatus = new SimpleStringProperty();
+    private final StringProperty fieldInputBitStatus   = new SimpleStringProperty();
+
     private final StringProperty fieldBitArray = new SimpleStringProperty();
 
     private String patternInput = "[0,1]+";
@@ -28,7 +30,8 @@ public class ViewModel {
         inputBitArray.set("");
         fieldBitArray.set("");
 
-        fieldInputStatus.set(Status.WAITING.toString());
+        fieldInputArrayStatus.set(Status.WAITING.toString());
+        fieldInputBitStatus.set(Status.WAITING.toString());
 
         final List<StringProperty> triggers = new ArrayList<>() {
             {
@@ -67,8 +70,12 @@ public class ViewModel {
         return fieldBitArray;
     }
 
-    public StringProperty fieldInputStatusProperty() {
-        return fieldInputStatus;
+    public StringProperty fieldInputArrayStatusProperty() {
+        return fieldInputArrayStatus;
+    }
+
+    public StringProperty fieldInputBitStatusProperty() {
+        return fieldInputBitStatus;
     }
 
     private boolean patternMatch(final String inputString, final String patternString) {
@@ -77,7 +84,7 @@ public class ViewModel {
         return matcher.matches();
     }
 
-    private Status getFieldInputStatus() {
+    private Status getFieldInputArrayStatus() {
         Status inputStatus = Status.READY;
         String arrayInputStr = inputBitArray.get();
         boolean matchArrayInput = patternMatch(arrayInputStr, patternInput);
@@ -90,7 +97,7 @@ public class ViewModel {
 
     public void create() {
         String arrayInputStr = inputBitArray.get();
-        if (getFieldInputStatus() != Status.READY) {
+        if (getFieldInputArrayStatus() != Status.READY) {
             return;
         }
         bitArray = new BitArray(arrayInputStr.length());
@@ -100,7 +107,7 @@ public class ViewModel {
             }
         }
         fieldBitArrayProperty();
-        fieldInputStatus.set(Status.SUCCESS.toString());
+        fieldInputArrayStatus.set(Status.SUCCESS.toString());
     }
 
     public void setBit() {
@@ -115,7 +122,7 @@ public class ViewModel {
         @Override
         public void changed(final ObservableValue<? extends String> observable,
                             final String oldValue, final String newValue) {
-            fieldInputStatus.set(getFieldInputStatus().toString());
+            fieldInputArrayStatus.set(getFieldInputArrayStatus().toString());
         }
     }
 }

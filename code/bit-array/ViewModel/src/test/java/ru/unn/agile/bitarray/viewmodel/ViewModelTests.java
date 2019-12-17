@@ -1,6 +1,5 @@
 package ru.unn.agile.bitarray.viewmodel;
 
-import javafx.fxml.FXML;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,29 +29,30 @@ public class ViewModelTests {
 
     @Test
     public void constructorDefaultSetStatusWaiting() {
-        assertEquals(Status.WAITING.toString(), viewModel.fieldInputStatusProperty().get());
+        assertEquals(Status.WAITING.toString(), viewModel.fieldInputArrayStatusProperty().get());
+        assertEquals(Status.WAITING.toString(), viewModel.fieldInputBitStatusProperty().get());
     }
 
-    // Status field tests - getInputStatusField
+    // Array status field tests - fieldInputArrayStatusProperty
     @Test
     public void statusFieldOnInputFieldIsEmptyIsWaiting() {
         viewModel.inputBitArrayProperty().set("");
 
-        assertEquals(Status.WAITING.toString(), viewModel.fieldInputStatusProperty().get());
+        assertEquals(Status.WAITING.toString(), viewModel.fieldInputArrayStatusProperty().get());
     }
 
     @Test
     public void statusFieldOnIncorrectBitArrayInputIsBadArrayFormat() {
         viewModel.inputBitArrayProperty().set("42");
 
-        assertEquals(Status.BAD_FORMAT_ARRAY.toString(), viewModel.fieldInputStatusProperty().get());
+        assertEquals(Status.BAD_FORMAT_ARRAY.toString(), viewModel.fieldInputArrayStatusProperty().get());
     }
 
     @Test
     public void statusFieldOnCorrectInputIsReady() {
         viewModel.inputBitArrayProperty().set("01");
 
-        assertEquals(Status.READY.toString(), viewModel.fieldInputStatusProperty().get());
+        assertEquals(Status.READY.toString(), viewModel.fieldInputArrayStatusProperty().get());
     }
 
     @Test
@@ -60,7 +60,7 @@ public class ViewModelTests {
         viewModel.inputBitArrayProperty().set("01");
         viewModel.create();
 
-        assertEquals(Status.SUCCESS.toString(), viewModel.fieldInputStatusProperty().get());
+        assertEquals(Status.SUCCESS.toString(), viewModel.fieldInputArrayStatusProperty().get());
     }
 
     // BitArray field tests
