@@ -79,7 +79,10 @@ public class ViewModelTests {
     }
 
     @Test
-    public void statusBitFieldOnCorrectInputIsReady() {
+    public void statusBitFieldOnCorrectInputBitArrayCreatedIsReady() {
+        viewModel.inputBitArrayProperty().set("0101");
+        viewModel.create();
+
         viewModel.inputBitProperty().set("3");
 
         assertEquals(Status.READY.toString(), viewModel.fieldInputBitStatusProperty().get());

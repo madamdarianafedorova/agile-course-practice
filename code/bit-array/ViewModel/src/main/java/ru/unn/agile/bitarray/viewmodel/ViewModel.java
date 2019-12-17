@@ -104,6 +104,10 @@ public class ViewModel {
             inputStatus = Status.BAD_FORMAT_BIT;
             return inputStatus;
         }
+        if (bitArray == null) {
+            inputStatus = Status.NOT_CREATED;
+            return inputStatus;
+        }
         return inputStatus;
     }
 
@@ -126,11 +130,6 @@ public class ViewModel {
         if (getFieldInputBitStatus() != Status.READY) {
             return;
         }
-        if (bitArray == null) {
-            fieldInputBitStatus.set(Status.NOT_CREATED.toString());
-            return;
-        }
-
         final String bitInputStr = inputBit.get();
         final int index = Integer.parseInt(bitInputStr);
         bitArray.setBit(index);
@@ -143,11 +142,6 @@ public class ViewModel {
         if (getFieldInputBitStatus() != Status.READY) {
             return;
         }
-        if (bitArray == null) {
-            fieldInputBitStatus.set(Status.NOT_CREATED.toString());
-            return;
-        }
-
         final String bitInputStr = inputBit.get();
         final int index = Integer.parseInt(bitInputStr);
         bitArray.unsetBit(index);
@@ -169,7 +163,7 @@ public class ViewModel {
 enum Status {
     WAITING("Please provide input data"),
     READY("Press button or Enter"),
-    BAD_FORMAT_ARRAY("Incorrect format. Required: 01001 (size is not limited)"),
+    BAD_FORMAT_ARRAY("Incorrect format. Required: [0-1]+"),
     BAD_FORMAT_BIT("Incorrect format. Index required."),
     NOT_CREATED("Bit array is not created to change it."),
     SUCCESS("Success");
