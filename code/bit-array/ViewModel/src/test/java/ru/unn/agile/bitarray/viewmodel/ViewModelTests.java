@@ -45,7 +45,8 @@ public class ViewModelTests {
     public void statusArrayFieldOnIncorrectBitArrayInputIsBadArrayFormat() {
         viewModel.inputBitArrayProperty().set("0142");
 
-        assertEquals(Status.BAD_FORMAT_ARRAY.toString(), viewModel.fieldInputArrayStatusProperty().get());
+        assertEquals(Status.BAD_FORMAT_ARRAY.toString(),
+                viewModel.fieldInputArrayStatusProperty().get());
     }
 
     @Test
@@ -75,7 +76,8 @@ public class ViewModelTests {
     public void statusBitFieldOnIncorrectBitInputIsBadBitFormat() {
         viewModel.inputBitProperty().set("a");
 
-        assertEquals(Status.BAD_FORMAT_BIT.toString(), viewModel.fieldInputBitStatusProperty().get());
+        assertEquals(Status.BAD_FORMAT_BIT.toString(),
+                viewModel.fieldInputBitStatusProperty().get());
     }
 
     @Test
@@ -89,7 +91,7 @@ public class ViewModelTests {
     }
 
     @Test
-    public void statusBitFieldOnNotCreatedBitArrayUnsetCallIsNOT_CREATED() {
+    public void statusBitFieldOnNotCreatedBitArrayUnsetCallIsNOTCREATED() {
         viewModel.inputBitProperty().set("1");
         viewModel.unsetBit();
 
@@ -97,7 +99,7 @@ public class ViewModelTests {
     }
 
     @Test
-    public void statusBitFieldOnNotCreatedBitArraySetCallIsNOT_CREATED() {
+    public void statusBitFieldOnNotCreatedBitArraySetCallIsNOTCREATED() {
         viewModel.inputBitProperty().set("1");
         viewModel.setBit();
 
@@ -139,8 +141,8 @@ public class ViewModelTests {
 
     @Test
     public void bitArrayFieldAfterCreateOnIncorrectInputIsEmpty() {
-        final String incorrect_input = "42";
-        viewModel.inputBitArrayProperty().set(incorrect_input);
+        final String incorrectInput = "42";
+        viewModel.inputBitArrayProperty().set(incorrectInput);
         viewModel.create();
 
         assertEquals("", viewModel.fieldBitArrayProperty().get().toString());
