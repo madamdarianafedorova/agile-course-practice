@@ -43,7 +43,7 @@ public class ViewModelTests {
 
     @Test
     public void statusArrayFieldOnIncorrectBitArrayInputIsBadArrayFormat() {
-        viewModel.inputBitArrayProperty().set("42");
+        viewModel.inputBitArrayProperty().set("0142");
 
         assertEquals(Status.BAD_FORMAT_ARRAY.toString(), viewModel.fieldInputArrayStatusProperty().get());
     }
@@ -73,11 +73,17 @@ public class ViewModelTests {
 
     @Test
     public void statusBitFieldOnIncorrectBitInputIsBadBitFormat() {
-        viewModel.inputBitArrayProperty().set("a");
+        viewModel.inputBitProperty().set("a");
 
         assertEquals(Status.BAD_FORMAT_BIT.toString(), viewModel.fieldInputBitStatusProperty().get());
     }
 
+    @Test
+    public void statusBitFieldOnCorrectInputIsReady() {
+        viewModel.inputBitProperty().set("42");
+
+        assertEquals(Status.READY.toString(), viewModel.fieldInputBitStatusProperty().get());
+    }
     // BitArray field tests
     @Test
     public void bitArrayFieldAfterCreatingSameAsInput() {
