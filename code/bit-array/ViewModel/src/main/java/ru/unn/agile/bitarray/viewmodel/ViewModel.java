@@ -140,7 +140,20 @@ public class ViewModel {
     }
 
     public void unsetBit() {
+        if (getFieldInputBitStatus() != Status.READY) {
+            return;
+        }
+        if (bitArray == null) {
+            fieldInputBitStatus.set(Status.NOT_CREATED.toString());
+            return;
+        }
 
+        final String bitInputStr = inputBit.get();
+        final int index = Integer.parseInt(bitInputStr);
+        bitArray.unsetBit(index);
+
+        fieldBitArrayProperty();
+        fieldInputBitStatus.set(Status.SUCCESS.toString());
     }
 
     private class ValueChangeListener implements ChangeListener<String> {
