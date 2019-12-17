@@ -11,24 +11,24 @@ import java.util.List;
 public class ViewModel {
     private final List<ValueChangeListener> valueChangedListeners = new ArrayList<>();
 
-    private final StringProperty bitArrayInput = new SimpleStringProperty();
+    private final StringProperty inputBitArray = new SimpleStringProperty();
     private final StringProperty inputBit = new SimpleStringProperty();
 
-    private final StringProperty inputStatusField = new SimpleStringProperty();
-    private final StringProperty bitArrayField = new SimpleStringProperty();
+    private final StringProperty fieldInputStatus = new SimpleStringProperty();
+    private final StringProperty fieldBitArray = new SimpleStringProperty();
 
     private BitArray bitArray;
 
     public ViewModel() {
         inputBit.set("");
-        bitArrayInput.set("");
-        bitArrayField.set("");
+        inputBitArray.set("");
+        fieldBitArray.set("");
 
-        inputStatusField.set(Status.WAITING.toString());
+        fieldInputStatus.set(Status.WAITING.toString());
 
         final List<StringProperty> fields = new ArrayList<>() {
             {
-                add(bitArrayInput);
+                add(inputBitArray);
                 add(inputBit);
             }
         };
@@ -40,21 +40,24 @@ public class ViewModel {
         }
     }
 
-    public StringProperty bitArrayInputProperty() {
-        return bitArrayInput;
+    public StringProperty inputBitArrayProperty() {
+        return inputBitArray;
     }
+
     public StringProperty inputBitProperty() {
         return inputBit;
     }
-    public StringProperty bitArrayFieldProperty() {
-        return bitArrayField;
-    }
-    public StringProperty inputStatusFieldProperty() {
-        return inputStatusField;
+
+    public StringProperty fieldBitArrayProperty() {
+        return fieldBitArray;
     }
 
-    private String getInputStatusField() {
-        return inputStatusField.get();
+    public StringProperty fieldInputStatusProperty() {
+        return fieldInputStatus;
+    }
+
+    private String getFieldInputStatus() {
+        return fieldInputStatus.get();
     }
 
     public void create() {
@@ -73,7 +76,7 @@ public class ViewModel {
         @Override
         public void changed(final ObservableValue<? extends String> observable,
                             final String oldValue, final String newValue) {
-            inputStatusField.set(getInputStatusField());
+            fieldInputStatus.set(getFieldInputStatus());
         }
     }
 }

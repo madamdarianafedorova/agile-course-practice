@@ -3,7 +3,6 @@ package ru.unn.agile.bitarray.viewmodel;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import ru.unn.agile.bitarray.model.BitArray;
 
 import static org.junit.Assert.*;
 
@@ -23,17 +22,20 @@ public class ViewModelTests {
     // Constructor tests
     @Test
     public void constructorDefaultSetAllStringsEmpty() {
-        assertEquals("", viewModel.bitArrayInputProperty().get());
+        assertEquals("", viewModel.inputBitArrayProperty().get());
         assertEquals("", viewModel.inputBitProperty().get());
-        assertEquals("", viewModel.bitArrayFieldProperty().get());
+        assertEquals("", viewModel.fieldBitArrayProperty().get());
     }
 
     @Test
     public void constructorDefaultSetStatusWaiting() {
-        assertEquals(Status.WAITING.toString(), viewModel.inputStatusFieldProperty().get());
+        assertEquals(Status.WAITING.toString(), viewModel.fieldInputStatusProperty().get());
     }
 
-    // Input field tests
-//    @Test
-//    public void input
+    // Input field tests - getInputStatusField
+    @Test
+    public void inputFieldIsEmptyStatusIsWaiting() {
+        viewModel.inputBitArrayProperty().set("");
+        assertEquals(Status.WAITING.toString(), viewModel.fieldInputStatusProperty().get());
+    }
 }
