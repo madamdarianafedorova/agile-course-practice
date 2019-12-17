@@ -98,7 +98,7 @@ public class ViewModelTests {
         viewModel.inputBitProperty().set("1");
         viewModel.setBit();
 
-        assertEquals(Status.SUCCESS.toString(), viewModel.fieldInputBitStatusProperty().get());
+        assertEquals(Status.NOT_CREATED.toString(), viewModel.fieldInputBitStatusProperty().get());
     }
 
     @Test
@@ -164,7 +164,7 @@ public class ViewModelTests {
         viewModel.create();
 
         viewModel.inputBitProperty().set(inputIndex);
-        viewModel.setBit();
+        viewModel.unsetBit();
 
         assertNotEquals(input, viewModel.fieldBitArrayProperty().get().toString());
     }
