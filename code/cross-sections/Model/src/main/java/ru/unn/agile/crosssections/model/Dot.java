@@ -12,6 +12,11 @@ public class Dot {
         this.y = y;
     }
 
+    public Dot(final String x, final String y) {
+        this.x = Integer.parseInt(x);
+        this.y = Integer.parseInt(y);
+    }
+
     public int getX() {
         return x;
     }
