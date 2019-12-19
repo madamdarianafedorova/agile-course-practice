@@ -22,8 +22,12 @@ public class CurrencyConverterViewModelTests {
     }
 
     @Test
-    public void canSetEmptyStringInTextFieldsByDefault() {
+    public void canSetEmptyStringInInputByDefault() {
         assertEquals("", viewModel.getInputCurrency().get());
+    }
+
+    @Test
+    public void canSetEmptyStringInOutputByDefault() {
         assertEquals("", viewModel.getOutputCurrency().get());
     }
 
