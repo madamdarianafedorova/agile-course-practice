@@ -22,22 +22,22 @@ public class CurrencyConverterViewModelTests {
     }
 
     @Test
-    public void canSetEmptyStringInInputByDefault() {
+    public void setsEmptyStingToInputByDefault() {
         assertEquals("", viewModel.getInputCurrency().get());
     }
 
     @Test
-    public void canSetEmptyStringInOutputByDefault() {
+    public void setsEmptyStringInOutputByDefault() {
         assertEquals("", viewModel.getOutputCurrency().get());
     }
 
     @Test
-    public void canSetConvertButtonDisabledByDefault() {
+    public void setsConvertButtonDisabledByDefault() {
         assertTrue(viewModel.isConvertButtonDisabled().get());
     }
 
     @Test
-    public void canSetListFromPairsByDefault() {
+    public void setsListFromPairsByDefault() {
         assertEquals(CurrencyPair.RUBLE_TO_DOLLAR, viewModel.getCurrencyPair().get());
     }
 
@@ -47,14 +47,14 @@ public class CurrencyConverterViewModelTests {
     }
 
     @Test
-    public void canSetConvertButtonEnabledAfterInput() {
+    public void setsConvertButtonEnabledAfterInput() {
         viewModel.getInputCurrency().set("1");
 
         assertFalse(viewModel.isConvertButtonDisabled().get());
     }
 
     @Test
-    public void canSetConvertButtonDisabledAfterClearInput() {
+    public void setsConvertButtonDisabledAfterClearInput() {
         viewModel.getInputCurrency().set("1");
         viewModel.getInputCurrency().set("");
 
@@ -77,7 +77,7 @@ public class CurrencyConverterViewModelTests {
     }
 
     @Test
-    public void cannotConvertWithIncorrectInput() {
+    public void doesntConvertWithIncorrectInput() {
         viewModel.getInputCurrency().set("word");
 
         assertTrue(viewModel.isConvertButtonDisabled().get());
@@ -97,42 +97,42 @@ public class CurrencyConverterViewModelTests {
     }
 
     @Test
-    public void canSetEuroToDollarInCurrencyPair() {
+    public void setsEuroToDollarInCurrencyPair() {
         viewModel.getCurrencyPair().set(CurrencyPair.EURO_TO_DOLLAR);
 
         assertEquals(CurrencyPair.EURO_TO_DOLLAR, viewModel.getCurrencyPair().get());
     }
 
     @Test
-    public void canSetDollarToEuroInCurrencyPair() {
+    public void setsDollarToEuroInCurrencyPair() {
         viewModel.getCurrencyPair().set(CurrencyPair.DOLLAR_TO_EURO);
 
         assertEquals(CurrencyPair.DOLLAR_TO_EURO, viewModel.getCurrencyPair().get());
     }
 
     @Test
-    public void canSetDollarToRubleInCurrencyPair() {
+    public void setsDollarToRubleInCurrencyPair() {
         viewModel.getCurrencyPair().set(CurrencyPair.DOLLAR_TO_RUBLE);
 
         assertEquals(CurrencyPair.DOLLAR_TO_RUBLE, viewModel.getCurrencyPair().get());
     }
 
     @Test
-    public void canSetEuroToRubleInCurrencyPair() {
+    public void setsEuroToRubleInCurrencyPair() {
         viewModel.getCurrencyPair().set(CurrencyPair.EURO_TO_RUBLE);
 
         assertEquals(CurrencyPair.EURO_TO_RUBLE, viewModel.getCurrencyPair().get());
     }
 
     @Test
-    public void canSetRubleToEuroInCurrencyPair() {
+    public void setsRubleToEuroInCurrencyPair() {
         viewModel.getCurrencyPair().set(CurrencyPair.RUBLE_TO_EURO);
 
         assertEquals(CurrencyPair.RUBLE_TO_EURO, viewModel.getCurrencyPair().get());
     }
 
     @Test
-    public void canConvert() {
+    public void converts() {
         viewModel.getInputCurrency().set("10000");
 
         viewModel.convert();
@@ -141,7 +141,7 @@ public class CurrencyConverterViewModelTests {
     }
 
     @Test
-    public void canConvertEuroToRuble() {
+    public void convertsEuroToRuble() {
         viewModel.getInputCurrency().set("1");
 
         viewModel.getCurrencyPair().set(CurrencyPair.EURO_TO_RUBLE);
@@ -151,7 +151,7 @@ public class CurrencyConverterViewModelTests {
     }
 
     @Test
-    public void canConvertDollarToRuble() {
+    public void convertsDollarToRuble() {
         viewModel.getInputCurrency().set("10");
 
         viewModel.getCurrencyPair().set(CurrencyPair.DOLLAR_TO_RUBLE);
@@ -161,7 +161,7 @@ public class CurrencyConverterViewModelTests {
     }
 
     @Test
-    public void canConvertRubleToEuro() {
+    public void convertsRubleToEuro() {
         viewModel.getInputCurrency().set("10000");
 
         viewModel.getCurrencyPair().set(CurrencyPair.RUBLE_TO_EURO);
@@ -171,7 +171,7 @@ public class CurrencyConverterViewModelTests {
     }
 
     @Test
-    public void canConvertDollarToEuro() {
+    public void convertsDollarToEuro() {
         viewModel.getInputCurrency().set("10000");
 
         viewModel.getCurrencyPair().set(CurrencyPair.DOLLAR_TO_EURO);
@@ -181,7 +181,7 @@ public class CurrencyConverterViewModelTests {
     }
 
     @Test
-    public void canConvertEuroToDollar() {
+    public void convertsEuroToDollar() {
         viewModel.getInputCurrency().set("1");
 
         viewModel.getCurrencyPair().set(CurrencyPair.EURO_TO_DOLLAR);
@@ -191,7 +191,7 @@ public class CurrencyConverterViewModelTests {
     }
 
     @Test
-    public void canClearOutputAfterChangeInput() {
+    public void clearsOutputAfterChangeInput() {
         viewModel.getInputCurrency().set("1");
 
         viewModel.convert();
@@ -201,7 +201,7 @@ public class CurrencyConverterViewModelTests {
     }
 
     @Test
-    public void canClearOutputAfterChangeCurrencyPair() {
+    public void clearsOutputAfterChangeCurrencyPair() {
         viewModel.getInputCurrency().set("2");
 
         viewModel.convert();
