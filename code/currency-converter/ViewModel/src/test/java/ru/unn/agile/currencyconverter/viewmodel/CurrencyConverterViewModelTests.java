@@ -132,7 +132,7 @@ public class CurrencyConverterViewModelTests {
     }
 
     @Test
-    public void convertsWithDefaultValues() {
+    public void convertsWithDefaultCurrencyPair() {
         viewModel.getInputCurrency().set("10000");
 
         viewModel.convert();
