@@ -42,8 +42,8 @@ public class CurrencyConverterViewModelTests {
     }
 
     @Test
-    public void isLengthTypesListHasCorrectValues() {
-        assertEquals(CurrencyPair.values()[5], viewModel.getCurrencyPairs().get(5));
+    public void currencyPairsHasCorrectValues() {
+        assertArrayEquals(CurrencyPair.values(), viewModel.getCurrencyPairs().toArray());
     }
 
     @Test
@@ -132,7 +132,7 @@ public class CurrencyConverterViewModelTests {
     }
 
     @Test
-    public void converts() {
+    public void convertsWithDefaultValues() {
         viewModel.getInputCurrency().set("10000");
 
         viewModel.convert();
