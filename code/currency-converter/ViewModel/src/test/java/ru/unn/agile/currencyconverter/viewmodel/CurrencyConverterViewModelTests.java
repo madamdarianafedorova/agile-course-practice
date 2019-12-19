@@ -132,7 +132,7 @@ public class CurrencyConverterViewModelTests {
     }
 
     @Test
-    public void convertsWithDefaultCurrencyPair() {
+    public void convertsRubleToDollarByDefault() {
         viewModel.getInputCurrency().set("10000");
 
         viewModel.convert();
