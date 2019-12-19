@@ -21,7 +21,7 @@ public class ViewModelTests {
     }
 
     @Test
-    public void canSetDefaultValues() {
+    public void setsEmptyStingToInputByDefault() {
         assertEquals("", viewModel.re1Property().get());
         assertEquals("", viewModel.im1Property().get());
         assertEquals("", viewModel.re2Property().get());
