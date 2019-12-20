@@ -233,6 +233,8 @@ include "code/arabic-roman-converter/View"
 project(":code/arabic-roman-converter/View").name = "arabic-roman-converter-View"
 include "code/arabic-roman-converter/ViewModel"
 project(":code/arabic-roman-converter/ViewModel").name = "arabic-roman-converter-ViewModel"
+include "code/arabic-roman-converter/Infrastructure"
+project(":code/arabic-roman-converter/Infrastructure").name = "arabic-roman-converter-Infrastructure"
 // Шульпин Степан
 include "code/mortgage-calculator/Model"
 project(":code/mortgage-calculator/Model").name = "mortgage-calculator-Model"
