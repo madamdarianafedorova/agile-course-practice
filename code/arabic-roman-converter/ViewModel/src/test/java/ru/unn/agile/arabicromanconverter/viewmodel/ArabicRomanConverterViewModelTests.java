@@ -148,6 +148,7 @@ public class ArabicRomanConverterViewModelTests {
     @Test
     public void logContainsIncorrectValueAfterIncorrectInput() {
         String incorrectValue = "bag";
+
         viewModel.getInput().set(incorrectValue);
         String message = viewModel.getLog().get(0);
 
