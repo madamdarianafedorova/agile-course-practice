@@ -24,6 +24,7 @@ public class FileLoggerTest {
 
     @Test
     public void canCreateLogFileOnDisk() {
+        ILogger logger = new FileLogger(FILENAME);
         try {
             new BufferedReader(new FileReader(FILENAME));
         } catch (FileNotFoundException e) {
