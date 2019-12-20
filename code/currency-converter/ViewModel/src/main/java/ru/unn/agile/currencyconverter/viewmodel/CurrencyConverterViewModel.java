@@ -27,6 +27,7 @@ public class CurrencyConverterViewModel {
         inputCurrency.addListener((observable, oldValue, newValue) -> {
             onInput(newValue);
         });
+
         currencyPair.addListener((observable, oldValue, newValue) -> {
             onTypeChange();
         });
