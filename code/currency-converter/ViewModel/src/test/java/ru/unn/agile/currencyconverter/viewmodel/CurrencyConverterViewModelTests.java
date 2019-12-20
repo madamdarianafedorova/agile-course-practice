@@ -62,14 +62,14 @@ public class CurrencyConverterViewModelTests {
     }
 
     @Test
-    public void errorAfterIncorrectInput() {
+    public void hasErrorAfterIncorrectInput() {
         viewModel.getInputCurrency().set("word");
 
         assertEquals("Incorrect Currency", viewModel.getError().get());
     }
 
     @Test
-    public void noErrorAfterCorrectInput() {
+    public void hasNoErrorAfterCorrectInput() {
         viewModel.getInputCurrency().set("word");
         viewModel.getInputCurrency().set("3");
 
@@ -84,12 +84,12 @@ public class CurrencyConverterViewModelTests {
     }
 
     @Test
-    public void noErrorByDefault() {
+    public void hasNoErrorByDefault() {
         assertEquals("", viewModel.getError().get());
     }
 
     @Test
-    public void noErrorAfterClearInput() {
+    public void hasNoErrorAfterClearInput() {
         viewModel.getInputCurrency().set("word");
         viewModel.getInputCurrency().set("");
 
