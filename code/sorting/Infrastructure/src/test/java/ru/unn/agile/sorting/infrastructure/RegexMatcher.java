@@ -16,12 +16,12 @@ public class RegexMatcher extends BaseMatcher {
     }
 
     public void describeTo(final Description description) {
-        description.appendText("matches regex = ");
+        description.appendText("match regex = ");
         description.appendText(regex);
     }
 
-    public static Matcher<? super String> matchesPattern(final String regex) {
-        RegexMatcher matcher = new RegexMatcher(regex);
+    public static Matcher<? super String> matchesPattern(final String regularExpression) {
+        RegexMatcher matcher = new RegexMatcher(regularExpression);
         @SuppressWarnings (value = "unchecked")
         Matcher<? super String> castedMatcher = (Matcher<? super String>)   matcher;
         return castedMatcher;
