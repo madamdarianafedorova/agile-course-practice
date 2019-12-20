@@ -12,57 +12,62 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-public class TxtLogger implements ILogger {
-    private static final String DATE_FORMAT_NOW = "yyyy-MM-dd HH:mm:ss";
-    private final BufferedWriter writer;
+public class FileLogger implements ILogger {
+
+    private static final String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
     private final String filename;
+    private final BufferedWriter writer;
 
     private static String now() {
-        Calendar cal = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_NOW, Locale.ENGLISH);
-        return sdf.format(cal.getTime());
+        Calendar calendar = Calendar.getInstance();
+        return new SimpleDateFormat(DATE_FORMAT, Locale.ENGLISH).format(calendar.getTime());
     }
 
-    public TxtLogger(final String filename) {
+    public FileLogger(final String filename) {
+        BufferedWriter logWriter = null;
         this.filename = filename;
 
-        BufferedWriter logWriter = null;
         try {
             logWriter = new BufferedWriter(new FileWriter(filename));
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception exception) {
+            exception.printStackTrace();
         }
+
         writer = logWriter;
     }
 
     @Override
-    public void log(final String s) {
+    public void log(final String logMessage) {
         try {
-            writer.write(now() + " > " + s);
+            writer.write(now() + " ~ " + logMessage);
+
             writer.newLine();
+
             writer.flush();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        } catch (Exception exception) {
+            exception.printStackTrace();
         }
     }
 
     @Override
-    public List<String> getLog() {
+    public List<String> readLog() {
         BufferedReader reader;
-        ArrayList<String> log = new ArrayList<String>();
+        ArrayList<String> logs = new ArrayList<String>();
+
         try {
             reader = new BufferedReader(new FileReader(filename));
             String line = reader.readLine();
 
             while (line != null) {
-                log.add(line);
+                logs.add(line);
                 line = reader.readLine();
             }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+
+        } catch (Exception exception) {
+            exception.printStackTrace();
         }
 
-        return log;
+        return logs;
     }
 
 }

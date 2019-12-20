@@ -34,7 +34,7 @@ public class ArabicRomanConverterViewModelTests {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void viewModelConstructorThrowsExceptionWithNullLogger() {
+    public void cannotCreateViewModelWithNullLogger() {
         new ViewModel(null);
     }
 

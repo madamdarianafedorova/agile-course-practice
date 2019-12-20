@@ -87,7 +87,7 @@ public class ViewModel {
     }
 
     public final List<String> getLog() {
-        return logger.getLog();
+        return logger.readLog();
     }
 
     public StringProperty getInput() {
@@ -140,7 +140,7 @@ public class ViewModel {
     }
 
     private void updateLogs() {
-        List<String> fullLog = logger.getLog();
+        List<String> fullLog = logger.readLog();
         String record = new String("");
         for (String log : fullLog) {
             record += log + "\n";
