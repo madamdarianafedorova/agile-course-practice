@@ -43,6 +43,7 @@ public class ViewModelTests {
     @Test
     public void statusIsWaitingWhenCalculateWithEmptyFields() {
         viewModel.check();
+
         assertEquals(Status.WAITING.toString(), viewModel.statusProperty().get());
     }
 
