@@ -13,8 +13,7 @@ public class Dot {
     }
 
     public Dot(final String x, final String y) {
-        this.x = Integer.parseInt(x);
-        this.y = Integer.parseInt(y);
+        this(Integer.parseInt(x), Integer.parseInt(y));
     }
 
     public int getX() {

@@ -21,6 +21,19 @@ public class ViewModel {
     private final StringProperty sndSectionFinishX = new SimpleStringProperty();
     private final StringProperty sndSectionFinishY = new SimpleStringProperty();
 
+    private final List<StringProperty> fields = new ArrayList<StringProperty>() {
+        {
+            add(fstSectionStartX);
+            add(fstSectionStartY);
+            add(fstSectionFinishX);
+            add(fstSectionFinishY);
+            add(sndSectionStartX);
+            add(sndSectionStartY);
+            add(sndSectionFinishX);
+            add(sndSectionFinishY);
+        }
+    };
+
     private final StringProperty result = new SimpleStringProperty();
     private final StringProperty status = new SimpleStringProperty();
 
@@ -29,21 +42,17 @@ public class ViewModel {
     private final List<ValueChangeListener> valueChangedListeners = new ArrayList<>();
 
     public ViewModel() {
-        fstSectionStartX.set("");
-        fstSectionStartY.set("");
-        fstSectionFinishX.set("");
-        fstSectionFinishY.set("");
-        sndSectionStartX.set("");
-        sndSectionStartY.set("");
-        sndSectionFinishX.set("");
-        sndSectionFinishY.set("");
+        for (StringProperty field : fields) {
+            field.set("");
+        }
         result.set("");
         status.set(Status.WAITING.toString());
 
         BooleanBinding couldCheck = new BooleanBinding() {
             {
-                super.bind(fstSectionStartX, fstSectionStartY, fstSectionFinishX, fstSectionFinishY,
-                        sndSectionStartX, sndSectionStartY, sndSectionFinishX, sndSectionFinishY);
+                for (StringProperty field : fields) {
+                    super.bind(field);
+                }
             }
 
             @Override
@@ -53,19 +62,6 @@ public class ViewModel {
         };
         checkDisabled.bind(couldCheck.not());
 
-        final List<StringProperty> fields = new ArrayList<StringProperty>() {
-            {
-                add(fstSectionStartX);
-                add(fstSectionStartY);
-                add(fstSectionFinishX);
-                add(fstSectionFinishY);
-                add(sndSectionStartX);
-                add(sndSectionStartY);
-                add(sndSectionFinishX);
-                add(sndSectionFinishY);
-            }
-        };
-
         for (StringProperty field : fields) {
             final ValueChangeListener listener = new ValueChangeListener();
             field.addListener(listener);
@@ -74,7 +70,7 @@ public class ViewModel {
     }
 
     public void check() {
-        if (checkDisabled.get()) {
+        if (isCheckDisabled()) {
             return;
         }
 
@@ -151,34 +147,30 @@ public class ViewModel {
 
     private Status getNewStatus() {
         Status newStatus = Status.READY;
-        if (fstSectionStartX.get().isEmpty() || fstSectionStartY.get().isEmpty()
-                || fstSectionFinishX.get().isEmpty() || fstSectionFinishY.get().isEmpty()
-                || sndSectionStartX.get().isEmpty() || sndSectionStartY.get().isEmpty()
-                || sndSectionFinishX.get().isEmpty() || sndSectionFinishY.get().isEmpty()) {
-            newStatus = Status.WAITING;
+        for (StringProperty field : fields) {
+            if (field.get().isEmpty()) {
+                newStatus = Status.WAITING;
+                break;
+            }
         }
-        newStatus = isIncorrectInput(fstSectionStartX) ? Status.BAD_FORMAT : newStatus;
-        newStatus = isIncorrectInput(fstSectionStartY) ? Status.BAD_FORMAT : newStatus;
-        newStatus = isIncorrectInput(fstSectionFinishX) ? Status.BAD_FORMAT : newStatus;
-        newStatus = isIncorrectInput(fstSectionFinishY) ? Status.BAD_FORMAT : newStatus;
-        newStatus = isIncorrectInput(sndSectionStartX) ? Status.BAD_FORMAT : newStatus;
-        newStatus = isIncorrectInput(fstSectionStartX) ? Status.BAD_FORMAT : newStatus;
-        newStatus = isIncorrectInput(sndSectionStartY) ? Status.BAD_FORMAT : newStatus;
-        newStatus = isIncorrectInput(sndSectionFinishX) ? Status.BAD_FORMAT : newStatus;
-        newStatus = isIncorrectInput(sndSectionFinishY) ? Status.BAD_FORMAT : newStatus;
-
+        for (StringProperty field : fields) {
+            if (!isInputCorrect(field)) {
+                newStatus = Status.BAD_FORMAT;
+                break;
+            }
+        }
         return newStatus;
     }
 
-    private boolean isIncorrectInput(final StringProperty property) {
+    private boolean isInputCorrect(final StringProperty property) {
         try {
             if (!property.get().isEmpty()) {
                 Integer.parseInt(property.get());
             }
         } catch (NumberFormatException nfe) {
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
 
     private class ValueChangeListener implements ChangeListener<String> {
