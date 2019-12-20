@@ -8,6 +8,10 @@ public class Range {
     private int finiteElement;
 
     public Range(final String rangeString) {
+        if (!isRange(rangeString)) {
+            throw new IllegalArgumentException("Incorrect Input!");
+        }
+
         String trimRangeString = rangeString.trim();
         String[] sentences = trimRangeString.split("[\\[(,\\s\\])]+");
         startingElement = Integer.parseInt(sentences[1]);
@@ -44,9 +48,9 @@ public class Range {
         return points;
     }
 
-    public boolean containRange(final Range range) {
+    public boolean containsRange(final Range range) {
         return this.startingElement <= range.startingElement
-            && this.finiteElement >= range.finiteElement;
+                && this.finiteElement >= range.finiteElement;
     }
 
     public int[] endPoints() {
@@ -58,6 +62,10 @@ public class Range {
                 .filter(x -> Arrays.stream(this.getAllPoints()).anyMatch(y -> y == x))
                 .count();
         return matchElements > 0;
+    }
+
+    private boolean isRange(final String input) {
+        return input.matches("[(|\\[]-?\\d+,-?\\d+[\\]|)]");
     }
 
     @Override

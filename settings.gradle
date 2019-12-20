@@ -179,6 +179,10 @@ project(":code/red-black-tree").name = "red-black-tree-Model"
 // Попков Кирилл
 include "code/range/Model"
 project(":code/range/Model").name = "range-Model"
+include "code/range/View"
+project(":code/range/View").name = "range-View"
+include "code/range/ViewModel"
+project(":code/range/ViewModel").name = "range-ViewModel"
 // Разин Вячеслав
 // binary-search
 include "code/binary-search/Model"
