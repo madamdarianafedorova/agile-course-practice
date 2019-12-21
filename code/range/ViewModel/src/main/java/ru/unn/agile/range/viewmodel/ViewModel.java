@@ -169,11 +169,11 @@ public class ViewModel {
         setDisable(btnEqualsDisabled);
     }
 
-    private void setDisable(BooleanProperty booleanProperty) {
+    private void setDisable(final BooleanProperty booleanProperty) {
         booleanProperty.setValue(true);
     }
 
-    private void setEnable(BooleanProperty booleanProperty) {
+    private void setEnable(final BooleanProperty booleanProperty) {
         booleanProperty.setValue(true);
     }
 
