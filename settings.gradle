@@ -225,6 +225,10 @@ project(":code/polygon-area/ViewModel").name = "polygon-area-ViewModel"
 // Федорова Дарья
 include "code/currency-converter/Model"
 project(":code/currency-converter/Model").name = "currency-converter-Model"
+include "code/currency-converter/View"
+project(":code/currency-converter/View").name = "currency-converter-View"
+include "code/currency-converter/ViewModel"
+project(":code/currency-converter/ViewModel").name = "currency-converter-ViewModel"
 // datastructure-set
 include "code/datastructure-set/Model"
 project(":code/datastructure-set/Model").name = "datastructure-set-Model"
