@@ -11,8 +11,8 @@ import static org.junit.Assert.*;
 public class ViewModelTests {
 
     private ViewModel viewModel;
-    private final String YES = "Yes";
-    private final String NO = "No";
+    private final String yes = "Yes";
+    private final String no = "No";
 
     @Before
     public void setUp() {
@@ -162,7 +162,7 @@ public class ViewModelTests {
 
         viewModel.overlapsRange();
 
-        assertEquals(YES, viewModel.getTxtResult().get());
+        assertEquals(yes, viewModel.getTxtResult().get());
     }
 
     @Test
@@ -172,7 +172,7 @@ public class ViewModelTests {
 
         viewModel.overlapsRange();
 
-        assertEquals(NO, viewModel.getTxtResult().get());
+        assertEquals(no, viewModel.getTxtResult().get());
     }
 
     @Test
@@ -182,7 +182,7 @@ public class ViewModelTests {
 
         viewModel.equalsRange();
 
-        assertEquals(YES, viewModel.getTxtResult().get());
+        assertEquals(yes, viewModel.getTxtResult().get());
     }
 
     @Test
@@ -192,7 +192,7 @@ public class ViewModelTests {
 
         viewModel.equalsRange();
 
-        assertEquals(NO, viewModel.getTxtResult().get());
+        assertEquals(no, viewModel.getTxtResult().get());
     }
 
     @Test
@@ -202,7 +202,7 @@ public class ViewModelTests {
 
         viewModel.containsInput();
 
-        assertEquals(YES, viewModel.getTxtResult().get());
+        assertEquals(yes, viewModel.getTxtResult().get());
     }
 
     @Test
@@ -212,7 +212,7 @@ public class ViewModelTests {
 
         viewModel.containsInput();
 
-        assertEquals(NO, viewModel.getTxtResult().get());
+        assertEquals(no, viewModel.getTxtResult().get());
     }
 
     @Test
@@ -222,7 +222,7 @@ public class ViewModelTests {
 
         viewModel.containsInput();
 
-        assertEquals(YES, viewModel.getTxtResult().get());
+        assertEquals(yes, viewModel.getTxtResult().get());
     }
 
     @Test
@@ -232,7 +232,7 @@ public class ViewModelTests {
 
         viewModel.containsInput();
 
-        assertEquals(NO, viewModel.getTxtResult().get());
+        assertEquals(no, viewModel.getTxtResult().get());
     }
 
     @Test
@@ -242,7 +242,7 @@ public class ViewModelTests {
 
         viewModel.containsInput();
 
-        assertEquals(YES, viewModel.getTxtResult().get());
+        assertEquals(yes, viewModel.getTxtResult().get());
     }
 
     @Test
@@ -251,7 +251,7 @@ public class ViewModelTests {
         viewModel.getTxtInput().setValue("[11,16]");
 
         viewModel.containsInput();
-        assertEquals(NO, viewModel.getTxtResult().get());
+        assertEquals(no, viewModel.getTxtResult().get());
     }
 
 

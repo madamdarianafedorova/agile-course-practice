@@ -18,8 +18,8 @@ public class ViewModel {
     private StringProperty txtInput = new SimpleStringProperty();
     private StringProperty txtRange = new SimpleStringProperty();
     private StringProperty txtResult = new SimpleStringProperty();
-    private final String YES = "Yes";
-    private final String NO = "No";
+    private final String yes = "Yes";
+    private final String no = "No";
 
     private Range range;
 
@@ -79,24 +79,24 @@ public class ViewModel {
 
         if (isInteger(input)) {
             if (range.containsValue(Integer.parseInt(input))) {
-                txtResult.setValue(YES);
+                txtResult.setValue(yes);
             } else {
-                txtResult.setValue(NO);
+                txtResult.setValue(no);
             }
         }
         if (isIntegerSet(input)) {
             if (range.containsSet(Arrays.stream(input.substring(1, input.length() - 1).split(","))
                     .map(String::trim).mapToInt(Integer::parseInt).toArray())) {
-                txtResult.setValue(YES);
+                txtResult.setValue(yes);
             } else {
-                txtResult.setValue(NO);
+                txtResult.setValue(no);
             }
         }
         if (isRange(input)) {
             if (range.containsRange(new Range(input))) {
-                txtResult.setValue(YES);
+                txtResult.setValue(yes);
             } else {
-                txtResult.setValue(NO);
+                txtResult.setValue(no);
             }
         }
     }
@@ -105,9 +105,9 @@ public class ViewModel {
         String input = txtInput.get();
         if (isRange(input)) {
             if (range.overlapsRange(new Range(input))) {
-                txtResult.setValue(YES);
+                txtResult.setValue(yes);
             } else {
-                txtResult.setValue(NO);
+                txtResult.setValue(no);
             }
         }
     }
@@ -116,9 +116,9 @@ public class ViewModel {
         String input = txtInput.get();
         if (isRange(input)) {
             if (range.equals(new Range(input))) {
-                txtResult.setValue(YES);
+                txtResult.setValue(yes);
             } else {
-                txtResult.setValue(NO);
+                txtResult.setValue(no);
             }
         }
     }
@@ -169,11 +169,11 @@ public class ViewModel {
         setDisable(btnEqualsDisabled);
     }
 
-    private void setDisable(BooleanProperty booleanProperty){
+    private void setDisable(BooleanProperty booleanProperty) {
         booleanProperty.setValue(true);
     }
 
-    private void setEnable(BooleanProperty booleanProperty){
+    private void setEnable(BooleanProperty booleanProperty) {
         booleanProperty.setValue(true);
     }
 
