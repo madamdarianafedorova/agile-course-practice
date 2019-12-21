@@ -163,9 +163,13 @@ include "code/queue/View"
 project(":code/queue/View").name = "queue-View"
 include "code/queue/ViewModel"
 project(":code/queue/ViewModel").name = "queue-ViewModel"
-// Нестеров Александр
-include "code/bit-array"
-project(":code/bit-array").name = "bit-array-Model"
+// Нестеров Александр - Bit-array
+include "code/bit-array/Model"
+project(":code/bit-array/Model").name = "bit-array-Model"
+include "code/bit-array/View"
+project(":code/bit-array/View").name = "bit-array-View"
+include "code/bit-array/ViewModel"
+project(":code/bit-array/ViewModel").name = "bit-array-ViewModel"
 // Нечесанов Владимир
 // Овчарук Олег
 include "code/polynomialcalculator"
