@@ -13,7 +13,7 @@ public class Range {
         }
 
         String trimRangeString = rangeString.trim();
-        String[] sentences = trimRangeString.split("[\\[(,\\s\\])]+");
+        String[] sentences = trimRangeString.split("[\\[(,\\])]+");
         startingElement = Integer.parseInt(sentences[1]);
         finiteElement = Integer.parseInt(sentences[2]);
         if (trimRangeString.startsWith("(")) {

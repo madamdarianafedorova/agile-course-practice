@@ -18,6 +18,8 @@ public class ViewModel {
     private StringProperty txtInput = new SimpleStringProperty();
     private StringProperty txtRange = new SimpleStringProperty();
     private StringProperty txtResult = new SimpleStringProperty();
+    private final String YES = "Yes";
+    private final String NO = "No";
 
     private Range range;
 
@@ -77,24 +79,24 @@ public class ViewModel {
 
         if (isInteger(input)) {
             if (range.containsValue(Integer.parseInt(input))) {
-                txtResult.setValue("Yes");
+                txtResult.setValue(YES);
             } else {
-                txtResult.setValue("No");
+                txtResult.setValue(NO);
             }
         }
         if (isIntegerSet(input)) {
             if (range.containsSet(Arrays.stream(input.substring(1, input.length() - 1).split(","))
                     .map(String::trim).mapToInt(Integer::parseInt).toArray())) {
-                txtResult.setValue("Yes");
+                txtResult.setValue(YES);
             } else {
-                txtResult.setValue("No");
+                txtResult.setValue(NO);
             }
         }
         if (isRange(input)) {
             if (range.containsRange(new Range(input))) {
-                txtResult.setValue("Yes");
+                txtResult.setValue(YES);
             } else {
-                txtResult.setValue("No");
+                txtResult.setValue(NO);
             }
         }
     }
@@ -103,9 +105,9 @@ public class ViewModel {
         String input = txtInput.get();
         if (isRange(input)) {
             if (range.overlapsRange(new Range(input))) {
-                txtResult.setValue("Yes");
+                txtResult.setValue(YES);
             } else {
-                txtResult.setValue("No");
+                txtResult.setValue(NO);
             }
         }
     }
@@ -114,9 +116,9 @@ public class ViewModel {
         String input = txtInput.get();
         if (isRange(input)) {
             if (range.equals(new Range(input))) {
-                txtResult.setValue("Yes");
+                txtResult.setValue(YES);
             } else {
-                txtResult.setValue("No");
+                txtResult.setValue(NO);
             }
         }
     }
@@ -153,18 +155,26 @@ public class ViewModel {
         }
 
         if (isInteger(input) || isIntegerSet(input)) {
-            btnContainsDisabled.setValue(false);
+            setEnable(btnContainsDisabled);
         } else if (isRange(input)) {
-            btnContainsDisabled.setValue(false);
-            btnOverlapsDisabled.setValue(false);
-            btnEqualsDisabled.setValue(false);
+            setEnable(btnContainsDisabled);
+            setEnable(btnOverlapsDisabled);
+            setEnable(btnEqualsDisabled);
         }
     }
 
     private void disableAllButtonsConnectedWithInput() {
-        btnContainsDisabled.setValue(true);
-        btnOverlapsDisabled.setValue(true);
-        btnEqualsDisabled.setValue(true);
+        setDisable(btnContainsDisabled);
+        setDisable(btnOverlapsDisabled);
+        setDisable(btnEqualsDisabled);
+    }
+
+    private void setDisable(BooleanProperty booleanProperty){
+        booleanProperty.setValue(true);
+    }
+
+    private void setEnable(BooleanProperty booleanProperty){
+        booleanProperty.setValue(true);
     }
 
     private boolean isInteger(final String input) {
