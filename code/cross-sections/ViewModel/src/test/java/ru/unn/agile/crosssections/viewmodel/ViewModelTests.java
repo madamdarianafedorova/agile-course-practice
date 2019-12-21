@@ -4,6 +4,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class ViewModelTests {
@@ -11,12 +13,28 @@ public class ViewModelTests {
 
     @Before
     public void setUp() {
-        viewModel = new ViewModel();
+        setViewModel(new ViewModel(new FakeLogger()));
     }
 
     @After
     public void tearDown() {
         viewModel = null;
+    }
+
+    protected void setViewModel(final ViewModel viewModel) {
+        this.viewModel = viewModel;
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void doesntCreateViewModelWithNullLogger() {
+        new ViewModel(null);
+    }
+
+    @Test
+    public void getsEmptyLogAfterCreation() {
+        var log = viewModel.getLog();
+
+        assertTrue(log.isEmpty());
     }
 
     @Test
@@ -41,6 +59,15 @@ public class ViewModelTests {
     }
 
     @Test
+    public void logActionNewInputWasEntered() {
+        var newValue = "1";
+
+        viewModel.fstSectionStartXProperty().set(newValue);
+
+        assertTrue(viewModel.getLog().get(0).matches(".*" + ViewModel.LogMessages.NEW_INPUT + newValue + "$"));
+    }
+
+    @Test
     public void statusIsWaitingWhenCalculateWithEmptyFields() {
         viewModel.check();
 
@@ -52,6 +79,24 @@ public class ViewModelTests {
         viewModel.fstSectionStartXProperty().set("a");
 
         assertEquals(Status.BAD_FORMAT.toString(), viewModel.statusProperty().get());
+    }
+
+    @Test
+    public void logActionBadFormat() {
+        var newValue = "a";
+
+        viewModel.fstSectionStartXProperty().set(newValue);
+
+        assertTrue(viewModel.getLog().get(1).matches(".*" + ViewModel.LogMessages.BAD_FORMAT + newValue + "$"));
+    }
+
+    @Test
+    public void logActionStatusWasChanged() {
+        var newValue = "a";
+
+        viewModel.fstSectionStartXProperty().set(newValue);
+
+        assertTrue(viewModel.getLog().get(2).matches(".*" + ViewModel.LogMessages.STATUS_WAS_CHANGED + Status.BAD_FORMAT.toString() + "$"));
     }
 
     @Test
@@ -89,6 +134,15 @@ public class ViewModelTests {
     }
 
     @Test
+    public void logActionCheckWasPressed() {
+        setInputDontCrossedData();
+        viewModel.check();
+
+        List<String> logs = viewModel.getLog();
+        assertTrue(logs.get(logs.size() - 2).matches(".*" + ViewModel.LogMessages.CHECK_PRESSED));
+    }
+
+    @Test
     public void operationWhenCrossedHasCorrectResult() {
         setInputCrossedData();
         viewModel.check();
@@ -96,10 +150,28 @@ public class ViewModelTests {
     }
 
     @Test
+    public void logActionResultCrossed() {
+        setInputCrossedData();
+        viewModel.check();
+
+        List<String> logs = viewModel.getLog();
+        assertTrue(logs.get(logs.size() - 1).matches(".*" + ViewModel.LogMessages.RESULT_WAS_PRINTED + "Crossed" + "$"));
+    }
+
+    @Test
     public void operationWhenDontCrossedHasCorrectResult() {
         setInputDontCrossedData();
         viewModel.check();
         assertEquals("Don't Crossed", viewModel.resultProperty().get());
+    }
+
+    @Test
+    public void logActionResultDontCrossed() {
+        setInputDontCrossedData();
+        viewModel.check();
+
+        List<String> logs = viewModel.getLog();
+        assertTrue(logs.get(logs.size() - 1).matches(".*" + ViewModel.LogMessages.RESULT_WAS_PRINTED + "Don't Crossed" + "$"));
     }
 
     @Test
