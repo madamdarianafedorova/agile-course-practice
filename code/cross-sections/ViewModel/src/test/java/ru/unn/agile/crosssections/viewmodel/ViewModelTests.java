@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
+import ru.unn.agile.crosssections.viewmodel.ViewModel.LogMessages;
 
 import static org.junit.Assert.*;
 
@@ -65,7 +66,8 @@ public class ViewModelTests {
 
         viewModel.fstSectionStartXProperty().set(newValue);
 
-        assertTrue(viewModel.getLog().get(0).matches(".*" + ViewModel.LogMessages.NEW_INPUT + newValue + "$"));
+        assertTrue(viewModel.getLog().get(0)
+                .matches(".*" + LogMessages.NEW_INPUT + newValue + "$"));
     }
 
     @Test
@@ -88,7 +90,8 @@ public class ViewModelTests {
 
         viewModel.fstSectionStartXProperty().set(newValue);
 
-        assertTrue(viewModel.getLog().get(1).matches(".*" + ViewModel.LogMessages.BAD_FORMAT + newValue + "$"));
+        assertTrue(viewModel.getLog().get(1)
+                .matches(".*" + LogMessages.BAD_FORMAT + newValue + "$"));
     }
 
     @Test
@@ -97,7 +100,9 @@ public class ViewModelTests {
 
         viewModel.fstSectionStartXProperty().set(newValue);
 
-        assertTrue(viewModel.getLog().get(2).matches(".*" + ViewModel.LogMessages.STATUS_WAS_CHANGED + Status.BAD_FORMAT.toString() + "$"));
+        assertTrue(viewModel.getLog().get(2)
+                .matches(".*" + LogMessages.STATUS_WAS_CHANGED
+                        + Status.BAD_FORMAT.toString() + "$"));
     }
 
     @Test
@@ -140,7 +145,8 @@ public class ViewModelTests {
         viewModel.check();
 
         List<String> logs = viewModel.getLog();
-        assertTrue(logs.get(logs.size() - 2).matches(".*" + ViewModel.LogMessages.CHECK_PRESSED));
+        assertTrue(logs.get(logs.size() - 2)
+                .matches(".*" + LogMessages.CHECK_PRESSED));
     }
 
     @Test
@@ -156,7 +162,8 @@ public class ViewModelTests {
         viewModel.check();
 
         List<String> logs = viewModel.getLog();
-        assertTrue(logs.get(logs.size() - 1).matches(".*" + ViewModel.LogMessages.RESULT_WAS_PRINTED + "Crossed" + "$"));
+        assertTrue(logs.get(logs.size() - 1)
+                .matches(".*" + LogMessages.RESULT_WAS_PRINTED + "Crossed" + "$"));
     }
 
     @Test
@@ -172,7 +179,8 @@ public class ViewModelTests {
         viewModel.check();
 
         List<String> logs = viewModel.getLog();
-        assertTrue(logs.get(logs.size() - 1).matches(".*" + ViewModel.LogMessages.RESULT_WAS_PRINTED + "Don't Crossed" + "$"));
+        assertTrue(logs.get(logs.size() - 1)
+                .matches(".*" + LogMessages.RESULT_WAS_PRINTED + "Don't Crossed" + "$"));
     }
 
     @Test
