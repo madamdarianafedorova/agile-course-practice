@@ -9,6 +9,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class ViewModelTests {
+
     private ViewModel viewModel;
 
     @Before
@@ -17,7 +18,7 @@ public class ViewModelTests {
     }
 
     @After
-    public void tearDown() {
+    public void clear() {
         viewModel = null;
     }
 

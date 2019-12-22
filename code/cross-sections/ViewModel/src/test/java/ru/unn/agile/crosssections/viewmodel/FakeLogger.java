@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FakeLogger implements Logger {
-    private List<String> log = new ArrayList<>();
+    private List<String> listOfLogs = new ArrayList<>();
 
     @Override public void log(final String message) {
-        log.add(message);
+        listOfLogs.add(message);
     }
 
     @Override public List<String> getLog() {
-        return log;
+        return listOfLogs;
     }
 }
