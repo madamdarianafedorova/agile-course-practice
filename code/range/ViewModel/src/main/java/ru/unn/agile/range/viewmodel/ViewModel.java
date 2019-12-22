@@ -5,8 +5,11 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import ru.unn.agile.range.model.Range;
+import ru.unn.agile.range.model.Utils;
 
 import java.util.Arrays;
+
+import static ru.unn.agile.range.model.Utils.*;
 
 public class ViewModel {
 
@@ -134,12 +137,10 @@ public class ViewModel {
 
     private void setRange(final String input) {
 
-        var isCorrectInput = true;
+        var isCorrectInput = Utils.isRange(input);
 
-        try {
+        if (isCorrectInput) {
             this.range = new Range(input);
-        } catch (IllegalArgumentException ex) {
-            isCorrectInput = false;
         }
 
         btnGetAllPointsDisabled.setValue(!isCorrectInput);
@@ -175,22 +176,5 @@ public class ViewModel {
 
     private void setEnable(final BooleanProperty booleanProperty) {
         booleanProperty.setValue(true);
-    }
-
-    private boolean isInteger(final String input) {
-        return input.matches("-?\\d+");
-    }
-
-    private boolean isIntegerSet(final String input) {
-        return input.matches("\\{-?\\d+(,-?\\d+)+?\\}");
-    }
-
-    private boolean isRange(final String input) {
-        try {
-            new Range(input);
-        } catch (IllegalArgumentException ex) {
-            return false;
-        }
-        return true;
     }
 }

@@ -29,116 +29,116 @@ public class ViewModelTests {
     }
 
     @Test
-    public void hasContainsButtonIsDisabledByDefault() {
+    public void isContainsButtonIsDisabledByDefault() {
         assertTrue(viewModel.isContainsButtonDisabled().get());
     }
 
     @Test
-    public void hasEqualsButtonIsDisabledByDefault() {
+    public void isEqualsButtonIsDisabledByDefault() {
         assertTrue(viewModel.isEqualsButtonDisabled().get());
     }
 
     @Test
-    public void hasOverlapsButtonIsDisabledByDefault() {
+    public void isOverlapsButtonIsDisabledByDefault() {
         assertTrue(viewModel.isOverlapsButtonDisabled().get());
     }
 
     @Test
-    public void hasGetAllPointsButtonIsDisabledByDefault() {
+    public void isGetAllPointsButtonIsDisabledByDefault() {
         assertTrue(viewModel.isGetAllPointsButtonDisabled().get());
     }
 
     @Test
-    public void hasGetEndPointsButtonIsDisabledByDefault() {
+    public void isGetEndPointsButtonIsDisabledByDefault() {
         assertTrue(viewModel.isGetEndPointsButtonDisabled().get());
     }
 
     @Test
-    public void hasContainsButtonIsDisabledWithIncorrectRange() {
+    public void isContainsButtonIsDisabledWithIncorrectRange() {
         viewModel.getTxtRange().setValue("word");
         assertTrue(viewModel.isContainsButtonDisabled().get());
     }
 
     @Test
-    public void hasEqualsButtonIsDisabledWithIncorrectRange() {
+    public void isEqualsButtonIsDisabledWithIncorrectRange() {
         viewModel.getTxtRange().setValue("word");
         assertTrue(viewModel.isEqualsButtonDisabled().get());
     }
 
     @Test
-    public void hasOverlapsButtonIsDisabledWithIncorrectRange() {
+    public void isOverlapsButtonIsDisabledWithIncorrectRange() {
         viewModel.getTxtRange().setValue("word");
         assertTrue(viewModel.isOverlapsButtonDisabled().get());
     }
 
     @Test
-    public void hasGetAllPointsButtonIsDisabledWithIncorrectRange() {
+    public void isGetAllPointsButtonIsDisabledWithIncorrectRange() {
         viewModel.getTxtRange().setValue("word");
         assertTrue(viewModel.isGetAllPointsButtonDisabled().get());
     }
 
     @Test
-    public void hasGetEndPointsButtonIsDisabledWithIncorrectRange() {
+    public void isGetEndPointsButtonIsDisabledWithIncorrectRange() {
         viewModel.getTxtRange().setValue("word");
         assertTrue(viewModel.isGetEndPointsButtonDisabled().get());
     }
 
     @Test
-    public void hasGetAllPointsButtonIsEnabledWithCorrectRange() {
+    public void isGetAllPointsButtonIsEnabledWithCorrectRange() {
         viewModel.getTxtRange().setValue("[1,2]");
         assertFalse(viewModel.isGetAllPointsButtonDisabled().get());
     }
 
     @Test
-    public void hasGetEndPointsButtonIsEnabledWithCorrectRange() {
+    public void isGetEndPointsButtonIsEnabledWithCorrectRange() {
         viewModel.getTxtRange().setValue("(-1,3)");
         assertFalse(viewModel.isGetEndPointsButtonDisabled().get());
     }
 
     @Test
-    public void hasEqualsButtonIsDisabledWithIncorrectInput() {
+    public void isEqualsButtonIsDisabledWithIncorrectInput() {
         viewModel.getTxtRange().setValue("(-1,3)");
         viewModel.getTxtInput().setValue("word");
         assertTrue(viewModel.isEqualsButtonDisabled().get());
     }
 
     @Test
-    public void hasOverlapsButtonIsDisabledWithIncorrectInput() {
+    public void isOverlapsButtonIsDisabledWithIncorrectInput() {
         viewModel.getTxtRange().setValue("(-1,3)");
         viewModel.getTxtInput().setValue("word");
         assertTrue(viewModel.isOverlapsButtonDisabled().get());
     }
 
     @Test
-    public void hasContainsButtonIsDisabledWithIncorrectInput() {
+    public void isContainsButtonIsDisabledWithIncorrectInput() {
         viewModel.getTxtRange().setValue("(-1,3)");
         viewModel.getTxtInput().setValue("word");
         assertTrue(viewModel.isContainsButtonDisabled().get());
     }
 
     @Test
-    public void hasEqualsButtonIsDisabledWithIncorrectRangeAndCorrectInput() {
+    public void isEqualsButtonIsDisabledWithIncorrectRangeAndCorrectInput() {
         viewModel.getTxtRange().setValue("word");
         viewModel.getTxtInput().setValue("(-1,3)");
         assertTrue(viewModel.isEqualsButtonDisabled().get());
     }
 
     @Test
-    public void hasOverlapsButtonIsDisabledWithIncorrectRangeAndCorrectInput() {
+    public void isOverlapsButtonIsDisabledWithIncorrectRangeAndCorrectInput() {
         viewModel.getTxtRange().setValue("word");
         viewModel.getTxtInput().setValue("(-1,3)");
         assertTrue(viewModel.isOverlapsButtonDisabled().get());
     }
 
     @Test
-    public void hasContainsButtonIsDisabledWithIncorrectRangeAndCorrectInput() {
+    public void isContainsButtonIsDisabledWithIncorrectRangeAndCorrectInput() {
         viewModel.getTxtRange().setValue("word");
         viewModel.getTxtInput().setValue("(-1,3)");
         assertTrue(viewModel.isContainsButtonDisabled().get());
     }
 
     @Test
-    public void hasGetAllPointsButtonReturnsCorrectResult() {
+    public void isGetAllPointsButtonReturnsCorrectResult() {
         viewModel.getTxtRange().setValue("[1,4]");
 
         viewModel.getAllPoints();
@@ -147,7 +147,7 @@ public class ViewModelTests {
     }
 
     @Test
-    public void hasGetEndPointsButtonReturnsCorrectResult() {
+    public void isGetEndPointsButtonReturnsCorrectResult() {
         viewModel.getTxtRange().setValue("[1,4]");
 
         viewModel.getEndPoints();

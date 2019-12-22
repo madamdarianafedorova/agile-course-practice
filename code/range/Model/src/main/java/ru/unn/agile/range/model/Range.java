@@ -3,6 +3,8 @@ package ru.unn.agile.range.model;
 import java.util.Arrays;
 import java.util.Objects;
 
+import static ru.unn.agile.range.model.Utils.isRange;
+
 public class Range {
     private int startingElement;
     private int finiteElement;
@@ -62,10 +64,6 @@ public class Range {
                 .filter(x -> Arrays.stream(this.getAllPoints()).anyMatch(y -> y == x))
                 .count();
         return matchElements > 0;
-    }
-
-    private boolean isRange(final String input) {
-        return input.matches("[(|\\[]-?\\d+,-?\\d+[\\]|)]");
     }
 
     @Override
