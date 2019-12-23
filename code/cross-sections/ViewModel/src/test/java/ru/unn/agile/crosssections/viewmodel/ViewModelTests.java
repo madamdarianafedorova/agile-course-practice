@@ -33,7 +33,7 @@ public class ViewModelTests {
     }
 
     @Test
-    public void getsEmptyLogAfterCreation() {
+    public void logIsEmptyAfterCreation() {
         var log = viewModel.getLog();
 
         assertTrue(log.isEmpty());
@@ -61,7 +61,7 @@ public class ViewModelTests {
     }
 
     @Test
-    public void logActionNewInputWasEntered() {
+    public void canWriteActionNewInputWasEnteredInLog() {
         var newValue = "1";
 
         viewModel.fstSectionStartXProperty().set(newValue);
@@ -85,7 +85,7 @@ public class ViewModelTests {
     }
 
     @Test
-    public void logActionBadFormat() {
+    public void canWriteActionBadFormatInLog() {
         var newValue = "a";
 
         viewModel.fstSectionStartXProperty().set(newValue);
@@ -95,7 +95,7 @@ public class ViewModelTests {
     }
 
     @Test
-    public void logActionStatusWasChanged() {
+    public void canWriteActionStatusWasChangedInLog() {
         var newValue = "a";
 
         viewModel.fstSectionStartXProperty().set(newValue);
@@ -140,7 +140,7 @@ public class ViewModelTests {
     }
 
     @Test
-    public void logActionCheckWasPressed() {
+    public void canWriteActionCheckWasPressedInLog() {
         setInputDontCrossedData();
         viewModel.check();
 
@@ -157,7 +157,7 @@ public class ViewModelTests {
     }
 
     @Test
-    public void logActionResultCrossed() {
+    public void canWriteActionResultCrossedInLog() {
         setInputCrossedData();
         viewModel.check();
 
@@ -174,7 +174,7 @@ public class ViewModelTests {
     }
 
     @Test
-    public void logActionResultDontCrossed() {
+    public void canWriteActionResultDontCrossedInLog() {
         setInputDontCrossedData();
         viewModel.check();
 

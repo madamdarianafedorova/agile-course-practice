@@ -207,7 +207,13 @@ public class ViewModel {
     }
 
     public List<String> getLog() {
-        return logger.getLog();
+        List<String> log = new ArrayList<>();
+        try {
+            log = logger.getLog();
+        } catch (NullPointerException ex) {
+            ex.printStackTrace();
+        }
+        return log;
     }
 
     static final class LogMessages {
@@ -221,7 +227,6 @@ public class ViewModel {
         static final String RESULT_WAS_PRINTED = "Result was printed: ";
     }
 }
-
 
 
 enum Status {

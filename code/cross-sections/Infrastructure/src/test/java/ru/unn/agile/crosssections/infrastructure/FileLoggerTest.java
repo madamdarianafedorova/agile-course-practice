@@ -24,7 +24,7 @@ public class FileLoggerTest {
     }
 
     @Test
-    public void logMessage() {
+    public void canWriteLogMessage() {
         var log = "action";
 
         logger.log(log);
@@ -33,7 +33,7 @@ public class FileLoggerTest {
     }
 
     @Test
-    public void logSeveralMessages() {
+    public void canWriteSeveralLogMessages() {
         var logs = new ArrayList<String>() {{
             add("action 1");
             add("action 2");

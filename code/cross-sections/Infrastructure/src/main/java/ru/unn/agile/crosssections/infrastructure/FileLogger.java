@@ -30,7 +30,8 @@ public class FileLogger implements Logger {
         bufferLogWriter = logWriter;
     }
 
-    @Override public List<String> getLog() {
+    @Override
+    public List<String> getLog() {
         List<String> listOfLogs = new ArrayList<String>();
         try {
             var reader = new BufferedReader(new FileReader(filename));
